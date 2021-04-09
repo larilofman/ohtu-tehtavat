@@ -41,36 +41,30 @@ class IntJoukko:
         return luvut
 
     @staticmethod
+    def luo(luvut):
+        joukko = IntJoukko(len(luvut))
+        for luku in luvut:
+            joukko.lisaa(luku)
+        return joukko
+
+    @staticmethod
     def yhdiste(taulu_a, taulu_b):
         yhdistetyt_luvut = taulu_a.to_int_list() + taulu_b.to_int_list()
-        yhdistetyt_taulut = IntJoukko(len(yhdistetyt_luvut))
-
-        for luku in yhdistetyt_luvut:
-            yhdistetyt_taulut.lisaa(luku)
-        return yhdistetyt_taulut
+        return IntJoukko.luo(yhdistetyt_luvut)
 
     @staticmethod
     def leikkaus(taulu_a, taulu_b):
         luvut_a = taulu_a.to_int_list()
         luvut_b = taulu_b.to_int_list()
         samanlaiset_luvut = set(luvut_a).intersection(luvut_b)
-        leikatut_taulut = IntJoukko(len(samanlaiset_luvut))
-
-        for luku in samanlaiset_luvut:
-            leikatut_taulut.lisaa(luku)
-        return leikatut_taulut
+        return IntJoukko.luo(samanlaiset_luvut)
 
     @staticmethod
     def erotus(taulu_a, taulu_b):
         luvut_a = taulu_a.to_int_list()
         luvut_b = taulu_b.to_int_list()
         erotetut_luvut = [alkio for alkio in luvut_a if alkio not in luvut_b ]
-        erotetut_taulut = IntJoukko(len(erotetut_luvut))
-
-        for luku in erotetut_luvut:
-            erotetut_taulut.lisaa(luku)
-
-        return erotetut_taulut
+        return IntJoukko.luo(erotetut_luvut)
 
     def __str__(self):
         luvut_merkkeina = [str(luku) for luku in self.to_int_list()]
