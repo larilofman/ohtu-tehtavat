@@ -10,86 +10,69 @@ class IntJoukko:
         else:
             self.kasvatuskoko = kasvatuskoko
 
-        self.ljono = [0] * self.kapasiteetti
+        self.lukujono = [0] * self.kapasiteetti
 
         self.alkioiden_lkm = 0
 
-    def kasvata_alkioiden_maaraa(self):
-        self.alkioiden_lkm = self.alkioiden_lkm + 1
-
-    def vahenna_alkioiden_maaraa(self):
-        self.alkioiden_lkm = self.alkioiden_lkm - 1
-
-    def kuuluu(self, numero):
-        return numero in self.ljono
+    def kuuluu(self, luku):
+        return luku in self.lukujono
 
     def kasvata_jonoa(self):
-        self.ljono.append([0] * (self.kasvatuskoko))
+        self.lukujono.append([0] * (self.kasvatuskoko))
 
-    def lisaa(self, numero):
-        if not self.kuuluu(numero):
-            self.ljono[self.alkioiden_lkm] = numero
-            self.kasvata_alkioiden_maaraa()
+    def lisaa(self, luku):
+        if not self.kuuluu(luku):
+            self.lukujono[self.alkioiden_lkm] = luku
+            self.alkioiden_lkm = self.alkioiden_lkm + 1
 
-            if self.alkioiden_lkm == len(self.ljono):
+            if self.alkioiden_lkm >= len(self.lukujono):
                 self.kasvata_jonoa()
 
-    def poista(self, numero):
-        if self.kuuluu(numero):  
-            self.ljono.remove(numero)
-            self.vahenna_alkioiden_maaraa()
+    def poista(self, luku):
+        if self.kuuluu(luku):  
+            self.lukujono.remove(luku)
+            self.alkioiden_lkm = self.alkioiden_lkm - 1
 
     def mahtavuus(self):
         return self.alkioiden_lkm
 
     def to_int_list(self):
-        alkiot = self.ljono[:self.alkioiden_lkm]
-        return alkiot
+        luvut = self.lukujono[:self.alkioiden_lkm]
+        return luvut
 
     @staticmethod
     def yhdiste(taulu_a, taulu_b):
-        yhdistetyt_alkiot = taulu_a.to_int_list() + taulu_b.to_int_list()
-        yhdistetyt_taulut = IntJoukko()
+        yhdistetyt_luvut = taulu_a.to_int_list() + taulu_b.to_int_list()
+        yhdistetyt_taulut = IntJoukko(len(yhdistetyt_luvut))
 
-        for alkio in yhdistetyt_alkiot:
-            yhdistetyt_taulut.lisaa(alkio)
+        for luku in yhdistetyt_luvut:
+            yhdistetyt_taulut.lisaa(luku)
         return yhdistetyt_taulut
 
     @staticmethod
     def leikkaus(taulu_a, taulu_b):
-        leikatut_taulut = IntJoukko()
-        alkiot_a = taulu_a.to_int_list()
-        alkiot_b = taulu_b.to_int_list()
-        samanlaiset_alkiot = list(set(alkiot_a).intersection(alkiot_b))
+        luvut_a = taulu_a.to_int_list()
+        luvut_b = taulu_b.to_int_list()
+        samanlaiset_luvut = set(luvut_a).intersection(luvut_b)
+        leikatut_taulut = IntJoukko(len(samanlaiset_luvut))
 
-        for alkio in samanlaiset_alkiot:
-            leikatut_taulut.lisaa(alkio)
+        for luku in samanlaiset_luvut:
+            leikatut_taulut.lisaa(luku)
         return leikatut_taulut
 
     @staticmethod
-    def erotus(a, b):
-        z = IntJoukko()
-        a_taulu = a.to_int_list()
-        b_taulu = b.to_int_list()
+    def erotus(taulu_a, taulu_b):
+        luvut_a = taulu_a.to_int_list()
+        luvut_b = taulu_b.to_int_list()
+        erotetut_luvut = [alkio for alkio in luvut_a if alkio not in luvut_b ]
+        erotetut_taulut = IntJoukko(len(erotetut_luvut))
 
-        for i in range(0, len(a_taulu)):
-            z.lisaa(a_taulu[i])
+        for luku in erotetut_luvut:
+            erotetut_taulut.lisaa(luku)
 
-        for i in range(0, len(b_taulu)):
-            z.poista(b_taulu[i])
-
-        return z
+        return erotetut_taulut
 
     def __str__(self):
-        if self.alkioiden_lkm == 0:
-            return "{}"
-        elif self.alkioiden_lkm == 1:
-            return "{" + str(self.ljono[0]) + "}"
-        else:
-            tuotos = "{"
-            for i in range(0, self.alkioiden_lkm - 1):
-                tuotos = tuotos + str(self.ljono[i])
-                tuotos = tuotos + ", "
-            tuotos = tuotos + str(self.ljono[self.alkioiden_lkm - 1])
-            tuotos = tuotos + "}"
-            return tuotos
+        luvut_merkkeina = [str(luku) for luku in self.to_int_list()]
+        liitetyt_merkit = ", ".join(luvut_merkkeina)
+        return f"{{{liitetyt_merkit}}}"
