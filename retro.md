@@ -1,0 +1,7 @@
+Start, Stop, Continue, More of, Less of Wheel retrospektiivikäytänteen mukaan paperille piirretään viiteen osaan jaettu ympyrä.
+Osioihin kirjataan ylös asioita joita kannattaisi alkaa tekemään, asioita joiden tekeminen kannattaisi lopettaa syystä tai toisesta,
+asioita joiden tekemistä kannattaisi jatkaa, asioita joiden tekemistä kannattaisi lisätä sekä asioita joiden tekemistä kannattaisi vähentää.
+Kommentit ovat varsin suotavia ja ne olisi syytä kirjata ylös samaiselle paperille.
+Isommat ryhmät kannattaa jakaa pienempiin cross-functional ryhmiin, joista jokainen tekee samanlaisen ympyräpaperin iteraation/projektin yhdestä puolesta kuten vaikka vaatimuksista. Tämän jälkeen pienryhmät tutustuvat muiden papereihin ja saavat lisäillä niihin omiaan. Lopuksi päätetään jatkotoimenpiteistä.
+
+Glad, Sad, Mad tavassa osallistujat kirjoittavat lyhyesti lapuille asioita sprintistä, tiimistä tai mahdollisesti ulkopuolisista ongelmista. Laput sijoitetaan kolmeen(glad, sad, mad) osaan jaetulle valkotaululle ja lapun kirjoittaja avaa muistiinpanoa lyhyesti. Samankaltaisia aiheita sisältävät laput kootaan ryhmiksi jonka jälkeen äänestetään aiheet, joista keskustellaan. Retrospektiiviä vetävä henkilö ohjaa keskustelua, jossa mielellään pohditaan seuraavan sprintin toimia.
